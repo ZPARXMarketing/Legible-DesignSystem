@@ -1,0 +1,17 @@
+{
+  "name": "legible-designsystem",
+  "version": "0.1.0",
+  "description": "A research-backed design system whose text settings the reader can change, inside limits that keep every combination readable.",
+  "type": "module",
+  "license": "MIT",
+  "bin": { "legible": "packages/cli/bin/legible.js" },
+  "scripts": {
+    "test": "node --test",
+    "check": "node packages/cli/bin/legible.js check",
+    "build": "node packages/cli/bin/legible.js build",
+    "visuals": "node scripts/make-visuals.mjs",
+    "all": "npm run test && npm run build && npm run visuals"
+  },
+  "engines": { "node": ">=20" },
+  "keywords": ["design-system", "accessibility", "readability", "wcag", "apca", "oklch", "design-tokens"]
+}

@@ -1,0 +1,534 @@
+{
+  "light": {
+    "color": {
+      "bg": {
+        "$type": "color",
+        "$value": "#fafaf9",
+        "$description": "Page ground. Text sits on it; never pure black or white in Dark and Dim."
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "Cards, panels and inputs raised above `bg`; the Reader panel."
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#1a1a1a",
+        "$description": "Body and heading text on `bg` and `surface`."
+      },
+      "ink-2": {
+        "$type": "color",
+        "$value": "#4a4a4a",
+        "$description": "Secondary text (captions, helper text) on `bg` and `surface`."
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#6b6b6b",
+        "$description": "Borders of controls, inputs and cards; 3:1 or better on `bg` and `surface`."
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#0b57d0",
+        "$description": "Links, primary buttons and selected states. Used as link text on `bg` and `surface`."
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "Text on an `accent` fill."
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "#0b57d0",
+        "$description": "Focus ring, 2px solid with 2px offset; 3:1 on every ground."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "#0b6b50",
+        "$description": "Success text and icon on `bg` and `surface`; always paired with the word or a check mark."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#8a4b00",
+        "$description": "Warning text and icon on `bg` and `surface`; always paired with the word or a triangle."
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#b42318",
+        "$description": "Error text and icon on `bg` and `surface`; always paired with the word or a cross."
+      },
+      "success-cvd": {
+        "$type": "color",
+        "$value": "#00598c",
+        "$description": "Success text and icon in color-vision mode (blue, off the red-green axis); pair with the word or a check mark."
+      },
+      "warning-cvd": {
+        "$type": "color",
+        "$value": "#8a5a00",
+        "$description": "Warning text and icon in color-vision mode (Okabe-Ito orange, darkened for text); pair with the word or a triangle."
+      },
+      "danger-cvd": {
+        "$type": "color",
+        "$value": "#a84300",
+        "$description": "Error text and icon in color-vision mode (Okabe-Ito vermillion, darkened for text); pair with the word or a cross."
+      }
+    }
+  },
+  "sepia": {
+    "color": {
+      "bg": {
+        "$type": "color",
+        "$value": "#f4ecd8",
+        "$description": "Page ground. Text sits on it; never pure black or white in Dark and Dim."
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "#fbf5e6",
+        "$description": "Cards, panels and inputs raised above `bg`; the Reader panel."
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#332819",
+        "$description": "Body and heading text on `bg` and `surface`."
+      },
+      "ink-2": {
+        "$type": "color",
+        "$value": "#5c4a35",
+        "$description": "Secondary text (captions, helper text) on `bg` and `surface`."
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#7a6a52",
+        "$description": "Borders of controls, inputs and cards; 3:1 or better on `bg` and `surface`."
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#064cb5",
+        "$description": "Links, primary buttons and selected states. Used as link text on `bg` and `surface`."
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "Text on an `accent` fill."
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "#0b4fb8",
+        "$description": "Focus ring, 2px solid with 2px offset; 3:1 on every ground."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "#035f46",
+        "$description": "Success text and icon on `bg` and `surface`; always paired with the word or a check mark."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#7a4300",
+        "$description": "Warning text and icon on `bg` and `surface`; always paired with the word or a triangle."
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#9e1101",
+        "$description": "Error text and icon on `bg` and `surface`; always paired with the word or a cross."
+      },
+      "success-cvd": {
+        "$type": "color",
+        "$value": "#005688",
+        "$description": "Success text and icon in color-vision mode (blue, off the red-green axis); pair with the word or a check mark."
+      },
+      "warning-cvd": {
+        "$type": "color",
+        "$value": "#734a00",
+        "$description": "Warning text and icon in color-vision mode (Okabe-Ito orange, darkened for text); pair with the word or a triangle."
+      },
+      "danger-cvd": {
+        "$type": "color",
+        "$value": "#8d3600",
+        "$description": "Error text and icon in color-vision mode (Okabe-Ito vermillion, darkened for text); pair with the word or a cross."
+      }
+    }
+  },
+  "dark": {
+    "color": {
+      "bg": {
+        "$type": "color",
+        "$value": "#121212",
+        "$description": "Page ground. Text sits on it; never pure black or white in Dark and Dim."
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "#1e1e1e",
+        "$description": "Cards, panels and inputs raised above `bg`; the Reader panel."
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#e9e9e9",
+        "$description": "Body and heading text on `bg` and `surface`."
+      },
+      "ink-2": {
+        "$type": "color",
+        "$value": "#cecece",
+        "$description": "Secondary text (captions, helper text) on `bg` and `surface`."
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#7d7d7d",
+        "$description": "Borders of controls, inputs and cards; 3:1 or better on `bg` and `surface`."
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#b5d1ff",
+        "$description": "Links, primary buttons and selected states. Used as link text on `bg` and `surface`."
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#0b1f3f",
+        "$description": "Text on an `accent` fill."
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "#8ab4f8",
+        "$description": "Focus ring, 2px solid with 2px offset; 3:1 on every ground."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "#70e4b0",
+        "$description": "Success text and icon on `bg` and `surface`; always paired with the word or a check mark."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#ffc55c",
+        "$description": "Warning text and icon on `bg` and `surface`; always paired with the word or a triangle."
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#ffc3bc",
+        "$description": "Error text and icon on `bg` and `surface`; always paired with the word or a cross."
+      },
+      "success-cvd": {
+        "$type": "color",
+        "$value": "#a2d7ff",
+        "$description": "Success text and icon in color-vision mode (blue, off the red-green axis); pair with the word or a check mark."
+      },
+      "warning-cvd": {
+        "$type": "color",
+        "$value": "#fec661",
+        "$description": "Warning text and icon in color-vision mode (Okabe-Ito orange, darkened for text); pair with the word or a triangle."
+      },
+      "danger-cvd": {
+        "$type": "color",
+        "$value": "#fec29f",
+        "$description": "Error text and icon in color-vision mode (Okabe-Ito vermillion, darkened for text); pair with the word or a cross."
+      }
+    }
+  },
+  "dim": {
+    "color": {
+      "bg": {
+        "$type": "color",
+        "$value": "#1f2328",
+        "$description": "Page ground. Text sits on it; never pure black or white in Dark and Dim."
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "#2a2f36",
+        "$description": "Cards, panels and inputs raised above `bg`; the Reader panel."
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#d1d5db",
+        "$description": "Body and heading text on `bg` and `surface`."
+      },
+      "ink-2": {
+        "$type": "color",
+        "$value": "#cdd4df",
+        "$description": "Secondary text (captions, helper text) on `bg` and `surface`."
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#7c8591",
+        "$description": "Borders of controls, inputs and cards; 3:1 or better on `bg` and `surface`."
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#bfd7fe",
+        "$description": "Links, primary buttons and selected states. Used as link text on `bg` and `surface`."
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#0b1f3f",
+        "$description": "Text on an `accent` fill."
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "#8ab4f8",
+        "$description": "Focus ring, 2px solid with 2px offset; 3:1 on every ground."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "#77ecb6",
+        "$description": "Success text and icon on `bg` and `surface`; always paired with the word or a check mark."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#fece7b",
+        "$description": "Warning text and icon on `bg` and `surface`; always paired with the word or a triangle."
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#ffc8c1",
+        "$description": "Error text and icon on `bg` and `surface`; always paired with the word or a cross."
+      },
+      "success-cvd": {
+        "$type": "color",
+        "$value": "#a9d9ff",
+        "$description": "Success text and icon in color-vision mode (blue, off the red-green axis); pair with the word or a check mark."
+      },
+      "warning-cvd": {
+        "$type": "color",
+        "$value": "#ffce7b",
+        "$description": "Warning text and icon in color-vision mode (Okabe-Ito orange, darkened for text); pair with the word or a triangle."
+      },
+      "danger-cvd": {
+        "$type": "color",
+        "$value": "#fecbae",
+        "$description": "Error text and icon in color-vision mode (Okabe-Ito vermillion, darkened for text); pair with the word or a cross."
+      }
+    }
+  },
+  "hc-light": {
+    "color": {
+      "bg": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "Page ground. Text sits on it; never pure black or white in Dark and Dim."
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "Cards, panels and inputs raised above `bg`; the Reader panel."
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#000000",
+        "$description": "Body and heading text on `bg` and `surface`."
+      },
+      "ink-2": {
+        "$type": "color",
+        "$value": "#262626",
+        "$description": "Secondary text (captions, helper text) on `bg` and `surface`."
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#000000",
+        "$description": "Borders of controls, inputs and cards; 3:1 or better on `bg` and `surface`."
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#0033a0",
+        "$description": "Links, primary buttons and selected states. Used as link text on `bg` and `surface`."
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "Text on an `accent` fill."
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "#0033a0",
+        "$description": "Focus ring, 2px solid with 2px offset; 3:1 on every ground."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "#00522f",
+        "$description": "Success text and icon on `bg` and `surface`; always paired with the word or a check mark."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#5c3300",
+        "$description": "Warning text and icon on `bg` and `surface`; always paired with the word or a triangle."
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#8a0f0f",
+        "$description": "Error text and icon on `bg` and `surface`; always paired with the word or a cross."
+      },
+      "success-cvd": {
+        "$type": "color",
+        "$value": "#003e66",
+        "$description": "Success text and icon in color-vision mode (blue, off the red-green axis); pair with the word or a check mark."
+      },
+      "warning-cvd": {
+        "$type": "color",
+        "$value": "#5c3c00",
+        "$description": "Warning text and icon in color-vision mode (Okabe-Ito orange, darkened for text); pair with the word or a triangle."
+      },
+      "danger-cvd": {
+        "$type": "color",
+        "$value": "#7a2e00",
+        "$description": "Error text and icon in color-vision mode (Okabe-Ito vermillion, darkened for text); pair with the word or a cross."
+      }
+    }
+  },
+  "hc-dark": {
+    "color": {
+      "bg": {
+        "$type": "color",
+        "$value": "#000000",
+        "$description": "Page ground. Text sits on it; never pure black or white in Dark and Dim."
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "#0a0a0a",
+        "$description": "Cards, panels and inputs raised above `bg`; the Reader panel."
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "Body and heading text on `bg` and `surface`."
+      },
+      "ink-2": {
+        "$type": "color",
+        "$value": "#e7e7e7",
+        "$description": "Secondary text (captions, helper text) on `bg` and `surface`."
+      },
+      "line": {
+        "$type": "color",
+        "$value": "#ffffff",
+        "$description": "Borders of controls, inputs and cards; 3:1 or better on `bg` and `surface`."
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#d9e8fe",
+        "$description": "Links, primary buttons and selected states. Used as link text on `bg` and `surface`."
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#000000",
+        "$description": "Text on an `accent` fill."
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "#ffd60a",
+        "$description": "Focus ring, 2px solid with 2px offset; 3:1 on every ground."
+      },
+      "success": {
+        "$type": "color",
+        "$value": "#8df9c8",
+        "$description": "Success text and icon on `bg` and `surface`; always paired with the word or a check mark."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#ffe1a2",
+        "$description": "Warning text and icon on `bg` and `surface`; always paired with the word or a triangle."
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#ffdedd",
+        "$description": "Error text and icon on `bg` and `surface`; always paired with the word or a cross."
+      },
+      "success-cvd": {
+        "$type": "color",
+        "$value": "#cde7ff",
+        "$description": "Success text and icon in color-vision mode (blue, off the red-green axis); pair with the word or a check mark."
+      },
+      "warning-cvd": {
+        "$type": "color",
+        "$value": "#ffe1a9",
+        "$description": "Warning text and icon in color-vision mode (Okabe-Ito orange, darkened for text); pair with the word or a triangle."
+      },
+      "danger-cvd": {
+        "$type": "color",
+        "$value": "#fedec9",
+        "$description": "Error text and icon in color-vision mode (Okabe-Ito vermillion, darkened for text); pair with the word or a cross."
+      }
+    }
+  },
+  "$shared": {
+    "spacing": {
+      "space-1": {
+        "$type": "dimension",
+        "$value": "4px",
+        "$description": "Tight gaps, icon-to-label."
+      },
+      "space-2": {
+        "$type": "dimension",
+        "$value": "8px",
+        "$description": "Inline gaps, chip padding."
+      },
+      "space-3": {
+        "$type": "dimension",
+        "$value": "12px",
+        "$description": "Control padding."
+      },
+      "space-4": {
+        "$type": "dimension",
+        "$value": "16px",
+        "$description": "Card padding; minimum page gutter."
+      },
+      "space-5": {
+        "$type": "dimension",
+        "$value": "24px",
+        "$description": "Between related groups."
+      },
+      "space-6": {
+        "$type": "dimension",
+        "$value": "32px",
+        "$description": "Section spacing."
+      },
+      "space-7": {
+        "$type": "dimension",
+        "$value": "48px",
+        "$description": "Large section spacing."
+      },
+      "space-8": {
+        "$type": "dimension",
+        "$value": "64px",
+        "$description": "Page-level spacing."
+      },
+      "target-min": {
+        "$type": "dimension",
+        "$value": "44px",
+        "$description": "Minimum size of every interactive target."
+      }
+    },
+    "radius": {
+      "radius-sm": {
+        "$type": "dimension",
+        "$value": "4px",
+        "$description": "Chips, inputs."
+      },
+      "radius-md": {
+        "$type": "dimension",
+        "$value": "8px",
+        "$description": "Buttons, alerts, cards."
+      },
+      "radius-lg": {
+        "$type": "dimension",
+        "$value": "12px",
+        "$description": "Reader panel, large cards."
+      },
+      "radius-pill": {
+        "$type": "dimension",
+        "$value": "999px",
+        "$description": "Preset chips and theme swatches."
+      }
+    },
+    "measure": {
+      "measure-min": {
+        "$type": "dimension",
+        "$value": "45ch",
+        "$description": "Narrowest allowed line length."
+      },
+      "measure-default": {
+        "$type": "dimension",
+        "$value": "65ch",
+        "$description": "Default reading column."
+      },
+      "measure-max": {
+        "$type": "dimension",
+        "$value": "90ch",
+        "$description": "Widest allowed line length; above 75ch line height becomes at least 1.6."
+      }
+    }
+  }
+}

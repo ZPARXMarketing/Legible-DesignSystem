@@ -1,0 +1,29 @@
+<!-- @dsCard height=300 -->
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+<style>
+html,body{margin:0;background:var(--bg)}
+.c{position:relative;width:960px;height:300px;background:var(--bg);overflow:hidden}
+svg{position:absolute;inset:0}
+.a{fill:var(--accent)}.k{fill:var(--ink)}.w{fill:var(--warning)}.m{fill:var(--ink-2)}.s{fill:var(--success)}
+.r{rx:var(--radius-md);ry:var(--radius-md)}
+.g{fill:var(--on-accent);font:700 280px/1 var(--font-sans)}
+.t{position:absolute;left:32px;bottom:44px;width:400px}
+h1{margin:0;font:700 96px/.95 var(--font-sans);letter-spacing:-.02em;color:var(--ink)}
+p{margin:12px 0 0;font:400 14px/20px var(--font-sans);color:var(--ink-2)}
+</style>
+<div class="c">
+<!-- blocks: accent 240x184, ink 232x112, warning 120x180, ink-2 104x92, success 240x108 (multiples of space-4/space-8).
+arrangement: staggered slab with satellites bleeding off top, right and bottom edges.
+pattern: one oversized glyph "A" clipped by the accent slab, since the system is about letterforms; radius-md corners.
+steps: 8, 48 px offsets; radius-md. -->
+<svg width="960" height="300" viewBox="0 0 960 300" aria-hidden="true">
+<defs><clipPath id="cl"><rect x="480" y="0" width="240" height="184" rx="8"/></clipPath></defs>
+<rect class="a r" x="480" y="0" width="240" height="184"/>
+<text class="g" x="500" y="232" clip-path="url(#cl)">A</text>
+<rect class="k r" x="728" y="0" width="232" height="112"/>
+<rect class="w r" x="728" y="120" width="120" height="180"/>
+<rect class="m r" x="856" y="120" width="104" height="92"/>
+<rect class="s r" x="480" y="192" width="240" height="108"/>
+</svg>
+<div class="t"><h1>Legible</h1><p>Type that adjusts to the reader, inside limits that keep it readable.</p></div>
+</div>

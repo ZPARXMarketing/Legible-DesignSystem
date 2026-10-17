@@ -1,0 +1,7 @@
+<!-- @dsCard group="Feedback" height=520 -->
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&family=Source+Serif+4&display=swap">
+<body style="margin:0;padding:24px;background:var(--bg);color:var(--ink)"><div id="r"></div><script>
+var L=window.Legible,h=React.createElement;
+function App(){return h("div",{style:{display:"grid",gap:12,maxWidth:520}},h(L.Alert,{kind:"info"},"Settings apply before first paint."),h(L.Alert,{kind:"success",title:"Saved"},"Your reading defaults are stored on this device."),h(L.Alert,{kind:"warning"},"Justified text needs hyphenation on."),h(L.Alert,{kind:"danger"},"Adjusted text color for readability."),h("div",{"data-cvd":"",style:{display:"grid",gap:12}},h(L.Alert,{kind:"success",title:"Success (color-vision mode)"},"Blue instead of green."),h(L.Alert,{kind:"danger",title:"Error (color-vision mode)"},"Vermillion instead of red.")))}
+ReactDOM.createRoot(document.getElementById("r")).render(h(App));
+</script></body>

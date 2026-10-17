@@ -1,0 +1,3 @@
+Reader is the settings panel plus a live page, the reference implementation of Legible Reader.
+
+Provide nothing, or `initial` with `theme`, `font`, `sizePx`, `lineHeight` and `letterSpacingEm`. Every change passes through `guard()`: values are clamped to the baseline ranges, weight rises in Dark and Dim, and line height is raised when the measure exceeds 75ch. The panel itself always uses the Recommended styling, so it stays usable at extreme settings; every control has a text label and a 44px target. Mount the panel behind a single "Aa" button and persist choices in `localStorage` key `legible.prefs.v1`.

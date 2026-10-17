@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Legible — generated. Do not edit. -->
+<resources>
+    <!-- light -->
+    <color name="legible_light_bg">#FAFAF9</color>
+    <color name="legible_light_surface">#FFFFFF</color>
+    <color name="legible_light_ink">#1A1A1A</color>
+    <color name="legible_light_ink_2">#4A4A4A</color>
+    <color name="legible_light_line">#6B6B6B</color>
+    <color name="legible_light_accent">#0B57D0</color>
+    <color name="legible_light_on_accent">#FFFFFF</color>
+    <color name="legible_light_focus">#0B57D0</color>
+    <color name="legible_light_success">#0B6B50</color>
+    <color name="legible_light_warning">#8A4B00</color>
+    <color name="legible_light_danger">#B42318</color>
+    <color name="legible_light_success_cvd">#00598C</color>
+    <color name="legible_light_warning_cvd">#8A5A00</color>
+    <color name="legible_light_danger_cvd">#A84300</color>
+    <!-- sepia -->
+    <color name="legible_sepia_bg">#F4ECD8</color>
+    <color name="legible_sepia_surface">#FBF5E6</color>
+    <color name="legible_sepia_ink">#332819</color>
+    <color name="legible_sepia_ink_2">#5C4A35</color>
+    <color name="legible_sepia_line">#7A6A52</color>
+    <color name="legible_sepia_accent">#064CB5</color>
+    <color name="legible_sepia_on_accent">#FFFFFF</color>
+    <color name="legible_sepia_focus">#0B4FB8</color>
+    <color name="legible_sepia_success">#035F46</color>
+    <color name="legible_sepia_warning">#7A4300</color>
+    <color name="legible_sepia_danger">#9E1101</color>
+    <color name="legible_sepia_success_cvd">#005688</color>
+    <color name="legible_sepia_warning_cvd">#734A00</color>
+    <color name="legible_sepia_danger_cvd">#8D3600</color>
+    <!-- dark -->
+    <color name="legible_dark_bg">#121212</color>
+    <color name="legible_dark_surface">#1E1E1E</color>
+    <color name="legible_dark_ink">#E9E9E9</color>
+    <color name="legible_dark_ink_2">#CECECE</color>
+    <color name="legible_dark_line">#7D7D7D</color>
+    <color name="legible_dark_accent">#B5D1FF</color>
+    <color name="legible_dark_on_accent">#0B1F3F</color>
+    <color name="legible_dark_focus">#8AB4F8</color>
+    <color name="legible_dark_success">#70E4B0</color>
+    <color name="legible_dark_warning">#FFC55C</color>
+    <color name="legible_dark_danger">#FFC3BC</color>
+    <color name="legible_dark_success_cvd">#A2D7FF</color>
+    <color name="legible_dark_warning_cvd">#FEC661</color>
+    <color name="legible_dark_danger_cvd">#FEC29F</color>
+    <!-- dim -->
+    <color name="legible_dim_bg">#1F2328</color>
+    <color name="legible_dim_surface">#2A2F36</color>
+    <color name="legible_dim_ink">#D1D5DB</color>
+    <color name="legible_dim_ink_2">#CDD4DF</color>
+    <color name="legible_dim_line">#7C8591</color>
+    <color name="legible_dim_accent">#BFD7FE</color>
+    <color name="legible_dim_on_accent">#0B1F3F</color>
+    <color name="legible_dim_focus">#8AB4F8</color>
+    <color name="legible_dim_success">#77ECB6</color>
+    <color name="legible_dim_warning">#FECE7B</color>
+    <color name="legible_dim_danger">#FFC8C1</color>
+    <color name="legible_dim_success_cvd">#A9D9FF</color>
+    <color name="legible_dim_warning_cvd">#FFCE7B</color>
+    <color name="legible_dim_danger_cvd">#FECBAE</color>
+    <!-- hc-light -->
+    <color name="legible_hc_light_bg">#FFFFFF</color>
+    <color name="legible_hc_light_surface">#FFFFFF</color>
+    <color name="legible_hc_light_ink">#000000</color>
+    <color name="legible_hc_light_ink_2">#262626</color>
+    <color name="legible_hc_light_line">#000000</color>
+    <color name="legible_hc_light_accent">#0033A0</color>
+    <color name="legible_hc_light_on_accent">#FFFFFF</color>
+    <color name="legible_hc_light_focus">#0033A0</color>
+    <color name="legible_hc_light_success">#00522F</color>
+    <color name="legible_hc_light_warning">#5C3300</color>
+    <color name="legible_hc_light_danger">#8A0F0F</color>
+    <color name="legible_hc_light_success_cvd">#003E66</color>
+    <color name="legible_hc_light_warning_cvd">#5C3C00</color>
+    <color name="legible_hc_light_danger_cvd">#7A2E00</color>
+    <!-- hc-dark -->
+    <color name="legible_hc_dark_bg">#000000</color>
+    <color name="legible_hc_dark_surface">#0A0A0A</color>
+    <color name="legible_hc_dark_ink">#FFFFFF</color>
+    <color name="legible_hc_dark_ink_2">#E7E7E7</color>
+    <color name="legible_hc_dark_line">#FFFFFF</color>
+    <color name="legible_hc_dark_accent">#D9E8FE</color>
+    <color name="legible_hc_dark_on_accent">#000000</color>
+    <color name="legible_hc_dark_focus">#FFD60A</color>
+    <color name="legible_hc_dark_success">#8DF9C8</color>
+    <color name="legible_hc_dark_warning">#FFE1A2</color>
+    <color name="legible_hc_dark_danger">#FFDEDD</color>
+    <color name="legible_hc_dark_success_cvd">#CDE7FF</color>
+    <color name="legible_hc_dark_warning_cvd">#FFE1A9</color>
+    <color name="legible_hc_dark_danger_cvd">#FEDEC9</color>
+    <dimen name="legible_space_1">4dp</dimen>
+    <dimen name="legible_space_2">8dp</dimen>
+    <dimen name="legible_space_3">12dp</dimen>
+    <dimen name="legible_space_4">16dp</dimen>
+    <dimen name="legible_space_5">24dp</dimen>
+    <dimen name="legible_space_6">32dp</dimen>
+    <dimen name="legible_space_7">48dp</dimen>
+    <dimen name="legible_space_8">64dp</dimen>
+    <dimen name="legible_target_min">44dp</dimen>
+</resources>

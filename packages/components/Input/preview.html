@@ -1,0 +1,7 @@
+<!-- @dsCard group="Forms" height=260 -->
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&family=Source+Serif+4&display=swap">
+<body style="margin:0;padding:24px;background:var(--bg);color:var(--ink)"><div id="r"></div><script>
+var L=window.Legible,h=React.createElement;
+function App(){return h("div",{style:{display:"grid",gap:16,maxWidth:360}},h(L.Input,{label:"Text size (px)",hint:"Between 14 and 32.",defaultValue:"18"}),h(L.Input,{label:"Line length (ch)",error:"Enter a value from 45 to 90.",defaultValue:"120"}))}
+ReactDOM.createRoot(document.getElementById("r")).render(h(App));
+</script></body>
