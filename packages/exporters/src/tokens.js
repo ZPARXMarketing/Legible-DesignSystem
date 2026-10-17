@@ -2,7 +2,10 @@ import { readFileSync } from 'node:fs';
 
 /** Load tokens.json (the Design System artifact format) and resolve per-theme color values, including {alias} references. */
 export function loadTokens(path) {
-  const raw = JSON.parse(readFileSync(path, 'utf8'));
+  return fromRaw(JSON.parse(readFileSync(path, 'utf8')));
+}
+
+export function fromRaw(raw) {
   const themes = raw.color.themes.map((t) => t.id);
   const first = themes[0];
   const names = new Set(raw.color.tokens.map((t) => t.name));

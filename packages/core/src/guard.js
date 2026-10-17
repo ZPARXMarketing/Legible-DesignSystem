@@ -1,4 +1,4 @@
-import limits from '../limits.json' with { type: 'json' };
+import limits from './limits.js';
 
 export const BOUNDS = ['sizePx', 'weight', 'lineHeight', 'letterSpacingEm', 'wordSpacingEm', 'measureCh', 'paragraphSpacingEm'];
 export const DEFAULTS = Object.fromEntries(BOUNDS.map((k) => [k, limits[k].default]));

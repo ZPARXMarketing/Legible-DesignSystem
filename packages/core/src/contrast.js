@@ -1,4 +1,4 @@
-import limits from '../limits.json' with { type: 'json' };
+import limits from './limits.js';
 import { wcagRatio, apcaLc, hexToOklch, oklchToHex } from './color.js';
 
 export const LEVELS = limits.contrast;
