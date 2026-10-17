@@ -19,7 +19,7 @@ Everything on this page is generated from the real tokens and the real engine (`
 
 ## Contents
 
-[Themes](#six-themes) · [What readers can change](#what-readers-can-change) · [Guardrails](#guardrails) · [Contrast](#contrast-checked-two-ways) · [Architecture](#architecture) · [Type](#type) · [Quick start](#quick-start) · [Use it](#use-it) · [CLI](#cli) · [Components](#components) · [Repo layout](#repo-layout) · [Status and roadmap](#status-and-roadmap)
+[Themes](#six-themes) · [Legible Reader](#legible-reader) · [Legible Studio](#legible-studio) · [What readers can change](#what-readers-can-change) · [Guardrails](#guardrails) · [Contrast](#contrast-checked-two-ways) · [Architecture](#architecture) · [Type](#type) · [Quick start](#quick-start) · [Use it](#use-it) · [CLI](#cli) · [Components](#components) · [Repo layout](#repo-layout) · [Status and roadmap](#status-and-roadmap)
 
 ## Six themes
 
@@ -37,6 +37,57 @@ Light, Sepia, Dark, Dim and two High-contrast themes. Dark themes avoid pure bla
 | High contrast dark | `#000000` | `#ffffff` | 21:1, borders on every surface. |
 
 A color-vision mode swaps status colors to the Okabe–Ito family (blue success, orange warning, vermillion danger): set `data-cvd` on any ancestor.
+
+## Legible Reader
+
+`<legible-reader>` is a drop-in web component: one **Aa** button (or **Alt + A**) opens a side panel on desktop and a bottom sheet on phones. Changes apply live to the page behind it, stay inside the safe ranges, and say so when the engine corrects something.
+
+<table>
+<tr>
+<td width="50%"><img src="docs/img/reader-dyslexia.png" alt="Reader panel open on a sepia page with the Dyslexia-friendly preset: Atkinson Hyperlegible, 20px, wide spacing"></td>
+<td width="50%"><img src="docs/img/reader-night.png" alt="Reader panel open on a dim page with the Night preset"></td>
+</tr>
+<tr>
+<td align="center"><sub><b>Dyslexia-friendly</b> preset: Atkinson Hyperlegible, 20px, line height 1.8, letter spacing +0.08em, Sepia</sub></td>
+<td align="center"><sub><b>Night</b> preset: Dim theme, weight 450, Comfortable contrast</sub></td>
+</tr>
+</table>
+
+<p align="center"><img src="docs/img/reader-mobile.png" alt="Reader as a bottom sheet on a 390px wide phone" width="260"><br><sub>On a phone the panel becomes a full-width bottom sheet. Every control is at least 44px.</sub></p>
+
+```html
+<link rel="stylesheet" href="dist/tokens.css">
+<legible-reader target="article" presets="all" load-fonts></legible-reader>
+<script type="module" src="dist/legible-reader.js"></script>
+```
+
+- **Presets, theme, font, size, spacing, contrast, color-vision mode, reading ruler, hyphenation, custom colors**; undo (Ctrl/Cmd + Z), reset to recommended.
+- **Persistence:** `localStorage` key `legible.prefs.v1`, a share link (`?legible=<base64>`), and export to a `.json` file. Imported and shared values are whitelisted and clamped; a malformed link falls back to defaults and custom colors must be plain hex (no CSS injection).
+- **No flash:** paste [`packages/reader/boot.js`](packages/reader/boot.js) inline in `<head>` so the saved theme is set before first paint.
+- **OS aware:** `prefers-color-scheme`, `prefers-contrast: more` (starts at Maximum), `prefers-reduced-motion`, forced colors.
+- **Contrast correction:** pick Comfortable, Standard or Maximum and the text color is corrected against the live theme background; custom colors are corrected too, with a visible "Adjusted text color for readability." note.
+- **Events:** `legible-change` fires with `{ prefs, theme, notes }` for analytics or app state.
+- **Live demo:** serve the repo root and open `packages/reader/demo/index.html`. A real-browser test (`npm run smoke`, 20 checks) drives it, including the single-file bundle and the mobile sheet.
+
+## Legible Studio
+
+`legible init` turns one to three brand colors into a complete system: six themes, status and color-vision colors, type scale, spacing, radii, and every export, then proves it passes. Colors are built in OKLCH and the contrast engine moves **lightness only**, so the hue stays the brand's.
+
+![Systems generated from five different brand colors](docs/img/studio-gallery.svg)
+
+```bash
+npx legible init --name Acme --brand "#0B57D0,#E69F00" --type app --out ./acme
+# or run `legible init` with no flags for the prompts
+```
+
+| Input | Options |
+| --- | --- |
+| `--brand` | one to three hex colors (primary, then optional `accent-2` and `accent-3`) |
+| `--type` | `reading` (18px, ×1.25), `app` (16px, ×1.2), `dashboard` (15px, ×1.2), `marketing` |
+| `--radius`, `--spacing` | corner radius and spacing base in px |
+| `--sans`, `--serif` | font stacks, validated for unsafe characters |
+
+Output: `tokens/tokens.json`, `legible.config.json`, and `dist/` with CSS, Tailwind, DTCG, Swift, Android and the report card. The generator is tested against pale yellow, pure black, mid-gray, red, near-white and a three-color brand: every pair in every theme passes.
 
 ## What readers can change
 
@@ -105,6 +156,7 @@ git clone https://github.com/ZPARXMarketing/Legible-DesignSystem.git
 cd Legible-DesignSystem
 npm test           # unit tests for the engine and exporters
 npm run build      # tokens.css, Tailwind preset, DTCG, Swift, Android, report card
+npm run bundle     # dist/legible-reader.js: one file, no dependencies
 npm run check      # contrast matrix, exits 1 on any failing pair
 npm run visuals    # regenerate every image in docs/img
 ```
@@ -143,9 +195,11 @@ passes(text, bg, 'standard'); // true
 ## CLI
 
 ```
+legible init --name Acme --brand "#0B57D0"   generate a new system from brand colors
 legible build                   write every export and dist/report.html
 legible check                   run the contrast matrix (WCAG 2.2 + APCA)
 legible fix                     auto-fix failing token values (lightness only)
+                                add --tokens <file> and --out <dir> to any command
 legible export --target ios     css | tailwind | dtcg | ios | android
 ```
 
@@ -157,6 +211,7 @@ legible export --target ios     css | tailwind | dtcg | ios | android
 | iOS | `dist/ios/LegibleTokens.swift` |
 | Android | `dist/android/legible_tokens.xml` |
 | Report card | `dist/report.html` |
+| Reader web component | `dist/legible-reader.js` |
 
 ## Components
 
@@ -180,25 +235,28 @@ Bundled as `window.Legible` (React 18) in [`packages/components`](packages/compo
 tokens/tokens.json          source of truth for every token
 packages/core               OKLCH, WCAG, APCA, guard(), resolve(), fixContrast() + tests
 packages/exporters          css, tailwind, dtcg, swift, android + tests
-packages/cli                legible build | check | fix | export, report card
+packages/cli                legible init | build | check | fix | export, report card
+packages/studio             brand colors -> complete token system (generateTokens)
+packages/reader             <legible-reader>, pure preference logic + tests, boot.js, demo
 packages/components         React bundle, stylesheet, types, previews
 scripts/make-visuals.mjs    generates docs/img from the tokens and the engine
+scripts/smoke-reader.py     real-browser test of the Reader (Playwright)
 dist/                       generated outputs (committed; CI fails if stale)
 docs/                       reader settings, Studio plan, original spec
 ```
 
 ## Status and roadmap
 
-**Working today:** the contrast and guardrail engine with tests, six themes plus color-vision tokens, all exporters, the report card, nine components, CI that fails on stale outputs.
+**Working today:** the contrast and guardrail engine, six themes plus color-vision tokens, all exporters and the report card, `legible init`, the `<legible-reader>` web component, nine components, 49 unit tests, a 20-check browser test, and CI that fails on stale outputs.
 
 **Next:**
 
-1. `legible init`: generate a new brand system from one to three brand colors (see [`docs/studio.md`](docs/studio.md)).
-2. Reader panel as a `<legible-reader>` web component with `localStorage` persistence and the no-flash boot script.
-3. "Find my best font" calibration (six timed passages, words per minute).
-4. Remaining Reader settings: weight, word spacing, reading ruler, hyphenation, custom colors.
-5. Self-hosted WOFF2 fonts with size normalization.
-6. Figma (Tokens Studio) exporter and WCAG 1.4.12 / zoom browser tests.
+1. "Find my best font" calibration (six timed passages, words per minute) inside the Reader.
+2. Self-hosted WOFF2 fonts with size normalization.
+3. Figma (Tokens Studio) exporter.
+4. WCAG 1.4.12 text-spacing and 200% / 400% zoom tests, plus axe-core, in CI.
+5. Studio web app and a docs site generated per brand.
+6. Remaining components for the generated React package (Text, ReaderPanel wrapper).
 
 The full original specification is in [`docs/spec.md`](docs/spec.md).
 

@@ -1,5 +1,7 @@
 # Legible Studio
 
+> Status: the CLI generator (`legible init`) is implemented in `packages/studio`; the web app and docs-site output are still planned.
+
 Studio generates new design systems that inherit the research baseline. It is a CLI and a web app on one engine.
 
 ## Inputs

@@ -9,6 +9,7 @@ jobs:
         with: { node-version: 22 }
       - run: npm test
       - run: npm run build
+      - run: npm run bundle
       - run: npm run visuals
       - name: Generated files are up to date
         run: git diff --exit-code -- dist docs/img

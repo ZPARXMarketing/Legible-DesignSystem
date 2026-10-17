@@ -4,14 +4,29 @@
   "description": "A research-backed design system whose text settings the reader can change, inside limits that keep every combination readable.",
   "type": "module",
   "license": "MIT",
-  "bin": { "legible": "packages/cli/bin/legible.js" },
+  "bin": {
+    "legible": "packages/cli/bin/legible.js"
+  },
   "scripts": {
     "test": "node --test",
     "check": "node packages/cli/bin/legible.js check",
     "build": "node packages/cli/bin/legible.js build",
     "visuals": "node scripts/make-visuals.mjs",
-    "all": "npm run test && npm run build && npm run visuals"
+    "all": "npm run test && npm run build && npm run bundle && npm run visuals",
+    "bundle": "node scripts/bundle-reader.mjs",
+    "smoke": "python3 scripts/smoke-reader.py",
+    "demo": "node -e \"console.log('Serve the repo root (npx serve .) and open /packages/reader/demo/index.html')\""
   },
-  "engines": { "node": ">=20" },
-  "keywords": ["design-system", "accessibility", "readability", "wcag", "apca", "oklch", "design-tokens"]
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "design-system",
+    "accessibility",
+    "readability",
+    "wcag",
+    "apca",
+    "oklch",
+    "design-tokens"
+  ]
 }
