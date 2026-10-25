@@ -1,5 +1,5 @@
 const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
-export function reportHtml(t, rows) {
+export function reportHtml(t, rows, structure = []) {
   const fails = rows.filter((r) => !r.pass).length;
   const body = t.themes.map((th) => {
     const rs = rows.filter((r) => r.theme === th);
@@ -9,5 +9,6 @@ export function reportHtml(t, rows) {
         return `<tr><td>${esc(r.text)}</td><td>${esc(r.ground)}</td><td style="background:${bg};color:${fg};padding:4px 12px">Aa Legible</td><td>${r.ratio.toFixed(2)}:1</td><td>${r.kind === 'text' ? r.lc.toFixed(1) : '–'}</td><td>${esc(r.level)}</td><td>${r.pass ? '✓ pass' : '✕ FAIL'}</td></tr>`;
       }).join('') + '</tbody></table>';
   }).join('');
-  return `<!doctype html><meta charset="utf-8"><title>Legible report card</title><style>body{font:16px/1.5 system-ui,sans-serif;max-width:900px;margin:2rem auto;padding:0 1rem;color:#1a1a1a}table{border-collapse:collapse;width:100%;margin-bottom:2rem}td,th{border-bottom:1px solid #767676;padding:6px 8px;text-align:left}</style><h1>Legible report card</h1><p>${rows.length - fails}/${rows.length} pairs pass${fails ? `; ${fails} fail` : ''}.</p>${body}`;
+  const st = structure.length ? `<h2>Structure</h2><table><thead><tr><th>Rule</th><th>Values</th><th>Result</th></tr></thead><tbody>${structure.map((s) => `<tr><td>${esc(s.rule)}</td><td>${s.outer}px vs ${s.inner}px</td><td>${s.pass ? '✓ pass' : '✕ FAIL'}</td></tr>`).join('')}</tbody></table>` : '';
+  return `<!doctype html><meta charset="utf-8"><title>Legible report card</title><style>body{font:16px/1.5 system-ui,sans-serif;max-width:900px;margin:2rem auto;padding:0 1rem;color:#1a1a1a}table{border-collapse:collapse;width:100%;margin-bottom:2rem}td,th{border-bottom:1px solid #767676;padding:6px 8px;text-align:left}</style><h1>Legible report card</h1><p>${rows.length - fails}/${rows.length} pairs pass${fails ? `; ${fails} fail` : ''}.</p>${st}${body}`;
 }

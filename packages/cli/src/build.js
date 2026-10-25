@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { toCss, toTailwind, toDtcg, toSwift, toAndroid } from '../../exporters/src/index.js';
-import { runChecks } from './check.js';
+import { runChecks, checkStructure } from './check.js';
 import { reportHtml } from './report.js';
 
 export const TARGETS = {
@@ -19,10 +19,10 @@ export function writeOut(dist, rel, content, log = true) {
   if (log) console.log('wrote ' + rel);
 }
 
-/** Write every export and the report card into `dist`. Returns the failing contrast rows. */
+/** Write every export and the report card into `dist`. Returns the contrast rows, their failures and the structure rules. */
 export function buildAll(t, dist, log = true) {
   for (const [file, fn] of Object.values(TARGETS)) writeOut(dist, file, fn(t), log);
-  const rows = runChecks(t);
-  writeOut(dist, 'report.html', reportHtml(t, rows), log);
-  return { rows, fails: rows.filter((r) => !r.pass) };
+  const rows = runChecks(t), structure = checkStructure(t.raw);
+  writeOut(dist, 'report.html', reportHtml(t, rows, structure), log);
+  return { rows, fails: rows.filter((r) => !r.pass), structure };
 }

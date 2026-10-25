@@ -30,3 +30,13 @@ export function runChecks(t) {
 function row(theme, text, ground, c, level) {
   return { theme, text, ground, kind: 'text', level, ratio: wcagRatio(c[text], c[ground]), lc: apcaLc(c[text], c[ground]), pass: passes(c[text], c[ground], level) };
 }
+
+/** Structure rules: each spacing level must be a clear step up, or the eye can't tell groups apart. */
+export const STRUCTURE_RULES = [['gap-group', 'gap-item', 2], ['gap-section', 'gap-group', 1.5]];
+export function checkStructure(raw) {
+  const v = Object.fromEntries((raw.structure?.tokens ?? []).map((x) => [x.name, parseFloat(x.value)]));
+  return STRUCTURE_RULES.map(([outer, inner, k]) => {
+    const pass = v[outer] > 0 && v[inner] > 0 && v[outer] >= k * v[inner];
+    return { rule: `${outer} >= ${k}x ${inner}`, outer: v[outer], inner: v[inner], pass };
+  });
+}

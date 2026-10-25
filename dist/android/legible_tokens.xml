@@ -100,4 +100,7 @@
     <dimen name="legible_space_7">48dp</dimen>
     <dimen name="legible_space_8">64dp</dimen>
     <dimen name="legible_target_min">44dp</dimen>
+    <dimen name="legible_gap_item">8dp</dimen>
+    <dimen name="legible_gap_group">24dp</dimen>
+    <dimen name="legible_gap_section">48dp</dimen>
 </resources>

@@ -63,6 +63,8 @@ export function generateTokens({ name, brand, productType = 'reading', radiusBas
   const order = ['bg', 'surface', 'ink', 'ink-2', 'line', 'accent', 'on-accent', 'focus', 'accent-2', 'accent-3', 'success', 'warning', 'danger', 'success-cvd', 'warning-cvd', 'danger-cvd'];
   const sp = [1, 2, 3, 4, 6, 8, 12, 16].map((m, i) => ({ name: `space-${i + 1}`, value: `${m * spacingBase}px`, usage: ['Tight gaps', 'Inline gaps', 'Control padding', 'Card padding; minimum gutter', 'Between related groups', 'Section spacing', 'Large section spacing', 'Page-level spacing'][i] + '.' }));
   sp.push({ name: 'target-min', value: '44px', usage: 'Minimum size of every interactive target.' });
+  // Structure: proximity carries the grouping, so each level is a clear step up from the one inside it.
+  const structure = [['gap-item', 2, 'Between items inside one group: list rows, label to value.'], ['gap-group', 6, 'Between groups; at least 2x gap-item, so spacing alone shows what belongs together.'], ['gap-section', 12, 'Between sections; at least 1.5x gap-group.']].map(([n, m, u]) => ({ name: n, value: `${m * spacingBase}px`, usage: u }));
   const rb = radiusBase;
   const radius = [['radius-sm', Math.round(rb / 2), 'Chips, inputs.'], ['radius-md', rb, 'Buttons, alerts, cards.'], ['radius-lg', Math.round(rb * 1.5), 'Panels, large cards.']].map(([n, v, u]) => ({ name: n, value: v + 'px', usage: u }));
   radius.push({ name: 'radius-pill', value: '999px', usage: 'Chips and swatches.' });
@@ -79,7 +81,7 @@ export function generateTokens({ name, brand, productType = 'reading', radiusBas
         style('body', base, base * lh, 400, `Reading text: ${base}px at line height ${lh}.`), style('body-serif', base + 1, (base + 1) * 1.6, 400, 'Long-form reading in the serif family.', { family: 'serif' })] },
       { name: 'Interface', family: 'sans', styles: [
         style('ui', Math.max(16, base - 2), 24, 500, 'Buttons, labels, form fields.'), style('caption', Math.max(14, base - 4), 20, 400, 'Captions and helper text.', { letterSpacing: '0.01em' }), style('code', Math.max(14, base - 3), 24, 400, 'Inline and block code.', { family: 'mono' })] }] },
-    spacing: { tokens: sp }, radius: { tokens: radius },
+    spacing: { tokens: sp }, structure: { tokens: structure }, radius: { tokens: radius },
     measure: { tokens: [{ name: 'measure-min', value: '45ch', usage: 'Narrowest allowed line length.' }, { name: 'measure-default', value: '65ch', usage: 'Default reading column.' }, { name: 'measure-max', value: '90ch', usage: 'Widest allowed line length; above 75ch line height becomes at least 1.6.' }] },
   };
   const changes = fixRaw(raw);
