@@ -19,7 +19,7 @@ Everything on this page is generated from the real tokens and the real engine (`
 
 ## Contents
 
-[Themes](#six-themes) · [Legible Reader](#legible-reader) · [Legible Studio](#legible-studio) · [What readers can change](#what-readers-can-change) · [Guardrails](#guardrails) · [Contrast](#contrast-checked-two-ways) · [Architecture](#architecture) · [Type](#type) · [Quick start](#quick-start) · [Use it](#use-it) · [CLI](#cli) · [Components](#components) · [Repo layout](#repo-layout) · [Status and roadmap](#status-and-roadmap)
+[Themes](#six-themes) · [Legible Reader](#legible-reader) · [Legible Studio](#legible-studio) · [What readers can change](#what-readers-can-change) · [Guardrails](#guardrails) · [Contrast](#contrast-checked-two-ways) · [Architecture](#architecture) · [Type](#type) · [Structure](#structure) · [Quick start](#quick-start) · [Use it](#use-it) · [CLI](#cli) · [Components](#components) · [Repo layout](#repo-layout) · [Status and roadmap](#status-and-roadmap)
 
 ## Six themes
 
@@ -149,6 +149,10 @@ Tokens are authored in one file, [`tokens/tokens.json`](tokens/tokens.json), and
 - `font-size-adjust: from-font` keeps "18px" looking the same in every family.
 - Every interactive target is at least 44px; text spacing survives WCAG 1.4.12 and 200% zoom.
 
+## Structure
+
+Readable text is half of it; the other half is how the information is arranged. Three spacing tokens make grouping visible by proximity (`gap-item` 8px, `gap-group` 24px, `gap-section` 48px), and the build fails if a level is not a clear step up from the one inside it. Three components carry the rest: **Summary** (answer first), **Group** (about four items, no boxes) and **Compare** (options side by side, a marked pick, "—" for missing values). Rules and research: [`docs/structure.md`](docs/structure.md).
+
 ## Quick start
 
 ```bash
@@ -227,6 +231,9 @@ Bundled as `window.Legible` (React 18) in [`packages/components`](packages/compo
 | Input | Always-visible label, hint, and error with ✕ and the word "Error" |
 | Card | Bordered container, no shadow |
 | Table | Column headers, tabular figures, line-divided rows |
+| Group | Labelled items spaced by proximity, no border |
+| Summary | Answer first, a few points, one action |
+| Compare | Options side by side, marked pick, "—" for missing |
 | Reader | The reader settings panel with live page and `guard()` applied |
 
 ## Repo layout
@@ -242,12 +249,12 @@ packages/components         React bundle, stylesheet, types, previews
 scripts/make-visuals.mjs    generates docs/img from the tokens and the engine
 scripts/smoke-reader.py     real-browser test of the Reader (Playwright)
 dist/                       generated outputs (committed; CI fails if stale)
-docs/                       reader settings, Studio plan, original spec
+docs/                       reader settings, structure layer, Studio plan, original spec
 ```
 
 ## Status and roadmap
 
-**Working today:** the contrast and guardrail engine, six themes plus color-vision tokens, all exporters and the report card, `legible init`, the `<legible-reader>` web component, nine components, 49 unit tests, a 20-check browser test, and CI that fails on stale outputs.
+**Working today:** the contrast and guardrail engine, six themes plus color-vision tokens, all exporters and the report card, `legible init`, the `<legible-reader>` web component, the structure layer (spacing tokens with build checks), twelve components, 57 unit tests, a 20-check browser test, and CI that fails on stale outputs.
 
 **Next:**
 

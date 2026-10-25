@@ -26,3 +26,13 @@ test('swift and android mention every theme', () => {
   for (const th of t.themes) assert.ok(an.includes(`legible_${th.replace(/-/g, '_')}_ink`));
   assert.ok(sw.includes('enum HcDark') && sw.includes('static let onAccent'));
 });
+test('structure tokens reach every export', async () => {
+  const { loadTokens } = await import('../src/tokens.js');
+  const ex = await import('../src/index.js');
+  const t = loadTokens(new URL('../../../tokens/tokens.json', import.meta.url).pathname);
+  assert.match(ex.toCss(t), /--gap-item: 8px;[\s\S]*--gap-group: 24px;[\s\S]*--gap-section: 48px;/);
+  assert.equal(JSON.parse(ex.toDtcg(t)).$shared.structure['gap-group'].$value, '24px');
+  assert.match(ex.toTailwind(t), /"gap-group": "24px"/);
+  assert.match(ex.toSwift(t), /static let gapGroup: CGFloat = 24/);
+  assert.match(ex.toAndroid(t), /legible_gap_group">24dp/);
+});

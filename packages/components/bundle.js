@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"Legible","components":[{"name":"Button"},{"name":"Link"},{"name":"Alert"},{"name":"Prose"},{"name":"Reader"},{"name":"Heading"},{"name":"Input"},{"name":"Card"},{"name":"Table"}]} */
+/* @ds-bundle: {"format":4,"namespace":"Legible","components":[{"name":"Button"},{"name":"Link"},{"name":"Alert"},{"name":"Prose"},{"name":"Reader"},{"name":"Heading"},{"name":"Input"},{"name":"Card"},{"name":"Table"},{"name":"Group"},{"name":"Summary"},{"name":"Compare"}]} */
 (function () {
   var h = window.React.createElement, useState = window.React.useState;
   var LIMITS = {
@@ -99,5 +99,39 @@
       h('thead', null, h('tr', null, p.columns.map(function (c, i) { return h('th', { key: i, scope: 'col', className: p.numeric && p.numeric.indexOf(i) > -1 ? 'is-num' : undefined }, c); }))),
       h('tbody', null, p.rows.map(function (r, i) { return h('tr', { key: i }, r.map(function (c, j) { return h('td', { key: j, className: p.numeric && p.numeric.indexOf(j) > -1 ? 'is-num' : undefined }, c); })); })));
   }
-  window.Legible = { Heading: Heading, Input: Input, Card: Card, Table: Table, Button: Button, Link: Link, Alert: Alert, Prose: Prose, Reader: Reader, guard: guard, LIMITS: LIMITS };
+  // Structure layer: spacing shows the grouping, the answer comes first, options sit side by side.
+  function Group(p) {
+    return h('section', { className: cx('lg-group', p.className) },
+      p.label && h('h3', { className: 'lg-group__label' }, p.label), p.children);
+  }
+  function Summary(p) {
+    var pts = p.points || [];
+    return h('section', { className: cx('lg-summary', p.className), 'aria-label': p.label || 'Summary' },
+      p.label && h('p', { className: 'lg-summary__label' }, p.label),
+      h('p', { className: 'lg-summary__answer' }, p.answer),
+      pts.length > 0 && h('ul', { className: 'lg-summary__points' }, pts.map(function (t, i) { return h('li', { key: i }, t); })),
+      p.action && h('div', { className: 'lg-summary__action' }, p.action));
+  }
+  var EMPTY = '\u2014';
+  function Compare(p) {
+    var opts = p.options || [], num = p.numeric || [];
+    function cell(v) { return v == null || v === '' ? EMPTY : v; }
+    function cls(i, extra) { return cx(i === p.pick && 'is-pick', extra) || undefined; }
+    return h('div', { className: cx('lg-compare', p.className) },
+      h('table', null,
+        p.caption && h('caption', null, p.caption),
+        h('thead', null, h('tr', null,
+          h('td', null),
+          opts.map(function (o, i) {
+            return h('th', { key: i, scope: 'col', className: cls(i) }, o, i === p.pick && h('span', { className: 'lg-compare__mark' }, '\u2713 ' + (p.pickLabel || 'Pick')));
+          }))),
+        h('tbody', null, (p.criteria || []).map(function (c, r) {
+          var row = (p.values || [])[r] || [], isNum = num.indexOf(r) > -1;
+          return h('tr', { key: r }, h('th', { scope: 'row' }, c), opts.map(function (_, i) {
+            var v = cell(row[i]);
+            return h('td', { key: i, className: cls(i, cx(isNum && 'is-num', v === EMPTY && 'is-empty')) }, v);
+          }));
+        }))));
+  }
+  window.Legible = { Group: Group, Summary: Summary, Compare: Compare, Heading: Heading, Input: Input, Card: Card, Table: Table, Button: Button, Link: Link, Alert: Alert, Prose: Prose, Reader: Reader, guard: guard, LIMITS: LIMITS };
 })();

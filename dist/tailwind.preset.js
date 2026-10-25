@@ -27,7 +27,10 @@ export default {
         "6": "32px",
         "7": "48px",
         "8": "64px",
-        "target-min": "44px"
+        "target-min": "44px",
+        "gap-item": "8px",
+        "gap-group": "24px",
+        "gap-section": "48px"
       },
       "borderRadius": {
         "sm": "4px",

@@ -491,6 +491,23 @@
         "$description": "Minimum size of every interactive target."
       }
     },
+    "structure": {
+      "gap-item": {
+        "$type": "dimension",
+        "$value": "8px",
+        "$description": "Between items inside one group: list rows, label to value."
+      },
+      "gap-group": {
+        "$type": "dimension",
+        "$value": "24px",
+        "$description": "Between groups; at least 2x gap-item, so spacing alone shows what belongs together."
+      },
+      "gap-section": {
+        "$type": "dimension",
+        "$value": "48px",
+        "$description": "Between sections; at least 1.5x gap-group."
+      }
+    },
     "radius": {
       "radius-sm": {
         "$type": "dimension",

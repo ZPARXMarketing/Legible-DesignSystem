@@ -24,3 +24,19 @@ test('check on the repo tokens exits 0', () => {
   const r = spawnSync('node', [bin, 'check', '--out', out]);
   assert.equal(r.status, 0);
 });
+test('structure rules: the repo tokens pass, a flat scale fails', async () => {
+  const { checkStructure } = await import('../src/check.js');
+  const raw = JSON.parse(readFileSync(new URL('../../../tokens/tokens.json', import.meta.url), 'utf8'));
+  assert.ok(checkStructure(raw).every((r) => r.pass));
+  const flat = { structure: { tokens: [{ name: 'gap-item', value: '12px' }, { name: 'gap-group', value: '16px' }, { name: 'gap-section', value: '20px' }] } };
+  assert.deepEqual(checkStructure(flat).map((r) => r.pass), [false, false]);
+  assert.ok(checkStructure({}).every((r) => !r.pass), 'missing tokens fail');
+});
+test('generated systems carry passing structure tokens at any spacing base', async () => {
+  const { checkStructure } = await import('../src/check.js');
+  const { generateTokens } = await import('../../studio/src/generate.js');
+  for (const spacingBase of [2, 4, 8]) {
+    const { raw } = generateTokens({ name: 'S', brand: ['#0b57d0'], spacingBase });
+    assert.ok(checkStructure(raw).every((r) => r.pass), `base ${spacingBase}`);
+  }
+});

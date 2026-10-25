@@ -9,7 +9,7 @@ export function toCss(t) {
   const fonts = Object.entries(raw.type.families).map(([k, v]) => `  --font-${k}: ${v};`).join('\n');
   let css = `/* ${raw.name} — generated from tokens.json */\n:root, [data-theme="${first}"] {\n${block(first)}\n}\n`;
   for (const th of themes.slice(1)) css += `[data-theme="${th}"] {\n${block(th)}\n}\n`;
-  css += `:root {\n${[other('spacing'), other('radius'), other('measure'), fonts].filter(Boolean).join('\n')}\n}\n`;
+  css += `:root {\n${[other('spacing'), other('structure'), other('radius'), other('measure'), fonts].filter(Boolean).join('\n')}\n}\n`;
   for (const g of raw.type.groups) for (const s of g.styles) {
     const fam = s.family ?? g.family;
     css += `.${s.name} { font-family: var(--font-${fam}); font-size: ${s.fontSize}; line-height: ${s.lineHeight}; font-weight: ${s.fontWeight};${s.letterSpacing ? ` letter-spacing: ${s.letterSpacing};` : ''} }\n`;
@@ -24,7 +24,7 @@ export function toTailwind(t) {
   const colors = Object.fromEntries(t.colorTokens.map((c) => [c.name, `var(--${c.name})`]));
   const scale = (fam) => Object.fromEntries((t.raw[fam]?.tokens ?? []).map((x) => [x.name.replace(/^(space|radius)-/, ''), x.value]));
   const fonts = Object.fromEntries(Object.entries(t.raw.type.families).map(([k, v]) => [k, [v]]));
-  return `// ${t.raw.name} — generated Tailwind preset. Load dist/tokens.css and set data-theme on <html>.\nexport default ${JSON.stringify({ theme: { extend: { colors, spacing: scale('spacing'), borderRadius: scale('radius'), fontFamily: fonts } } }, null, 2)};\n`;
+  return `// ${t.raw.name} — generated Tailwind preset. Load dist/tokens.css and set data-theme on <html>.\nexport default ${JSON.stringify({ theme: { extend: { colors, spacing: { ...scale('spacing'), ...scale('structure') }, borderRadius: scale('radius'), fontFamily: fonts } } }, null, 2)};\n`;
 }
 
 export function toDtcg(t) {
@@ -33,7 +33,7 @@ export function toDtcg(t) {
     out[th] = { color: Object.fromEntries(Object.entries(t.colors[th]).map(([n, v]) => [n, { $type: 'color', $value: v, $description: t.colorTokens.find((c) => c.name === n)?.usage }])) };
   }
   const dim = (fam) => Object.fromEntries((t.raw[fam]?.tokens ?? []).map((x) => [x.name, { $type: 'dimension', $value: x.value, $description: x.usage }]));
-  out.$shared = { spacing: dim('spacing'), radius: dim('radius'), measure: dim('measure') };
+  out.$shared = { spacing: dim('spacing'), structure: dim('structure'), radius: dim('radius'), measure: dim('measure') };
   return JSON.stringify(out, null, 2) + '\n';
 }
 
@@ -44,7 +44,7 @@ export function toSwift(t) {
     for (const [n, v] of Object.entries(t.colors[th])) s += `        static let ${camel(n)} = UIColor(legibleHex: 0x${v.slice(1).toUpperCase()})\n`;
     s += `    }\n`;
   }
-  s += `}\n\nenum LegibleSpacing {\n` + (t.raw.spacing.tokens).map((x) => `    static let ${camel(x.name)}: CGFloat = ${parseFloat(x.value)}`).join('\n') + `\n}\n`;
+  s += `}\n\nenum LegibleSpacing {\n` + [...t.raw.spacing.tokens, ...(t.raw.structure?.tokens ?? [])].map((x) => `    static let ${camel(x.name)}: CGFloat = ${parseFloat(x.value)}`).join('\n') + `\n}\n`;
   return s;
 }
 
@@ -54,6 +54,6 @@ export function toAndroid(t) {
     s += `    <!-- ${th} -->\n`;
     for (const [n, v] of Object.entries(t.colors[th])) s += `    <color name="legible_${th.replace(/-/g, '_')}_${n.replace(/-/g, '_')}">${v.toUpperCase()}</color>\n`;
   }
-  for (const x of t.raw.spacing.tokens) s += `    <dimen name="legible_${x.name.replace(/-/g, '_')}">${parseFloat(x.value)}dp</dimen>\n`;
+  for (const x of [...t.raw.spacing.tokens, ...(t.raw.structure?.tokens ?? [])]) s += `    <dimen name="legible_${x.name.replace(/-/g, '_')}">${parseFloat(x.value)}dp</dimen>\n`;
   return s + `</resources>\n`;
 }

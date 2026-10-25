@@ -116,4 +116,7 @@ enum LegibleSpacing {
     static let space7: CGFloat = 48
     static let space8: CGFloat = 64
     static let targetMin: CGFloat = 44
+    static let gapItem: CGFloat = 8
+    static let gapGroup: CGFloat = 24
+    static let gapSection: CGFloat = 48
 }

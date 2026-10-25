@@ -14,9 +14,14 @@ const flag = (n, d) => { const i = argv.indexOf('--' + n); return i > -1 ? argv[
 const tokenPath = resolve(flag('tokens', resolve(root, 'tokens/tokens.json')));
 const distDir = resolve(flag('out', resolve(root, 'dist')));
 
-function summarize(fails, total) {
+/** Print the result; returns true when every contrast pair and structure rule passes. */
+function summarize({ rows, fails, structure }) {
   for (const f of fails) console.log(`FAIL ${f.theme.padEnd(9)} ${f.text} on ${f.ground}: ${f.ratio.toFixed(2)}:1, Lc ${f.lc.toFixed(1)} (needs ${f.level})`);
-  console.log(`${total - fails.length}/${total} pairs pass${fails.length ? `, ${fails.length} fail` : ''}`);
+  console.log(`${rows.length - fails.length}/${rows.length} pairs pass${fails.length ? `, ${fails.length} fail` : ''}`);
+  const bad = structure.filter((s) => !s.pass);
+  for (const s of bad) console.log(`FAIL structure ${s.rule}: ${s.outer}px vs ${s.inner}px`);
+  if (structure.length) console.log(`${structure.length - bad.length}/${structure.length} structure rules pass`);
+  return !fails.length && !bad.length;
 }
 
 async function init() {
@@ -37,17 +42,17 @@ async function init() {
   } catch (e) { console.error('Cannot build this system: ' + e.message); process.exit(2); }
   writeOut(out, 'tokens/tokens.json', JSON.stringify(sys.raw, null, 1) + '\n');
   writeOut(out, 'legible.config.json', JSON.stringify({ name, productType: type ?? 'reading', brand: brand.split(',').map((s) => s.trim()), themes: sys.tokens.themes, defaults: { theme: 'system', contrast: 'standard' } }, null, 2) + '\n');
-  const { rows, fails } = buildAll(sys.tokens, resolve(out, 'dist'));
+  const result = buildAll(sys.tokens, resolve(out, 'dist'));
   console.log(`${sys.changes.length} color values adjusted by the contrast engine`);
-  summarize(fails, rows.length);
+  const ok = summarize(result);
   console.log(`\nDone: ${out}`);
-  process.exit(fails.length ? 1 : 0);
+  process.exit(ok ? 0 : 1);
 }
 
 switch (cmd) {
   case 'init': await init(); break;
-  case 'build': { const { rows, fails } = buildAll(loadTokens(tokenPath), distDir); summarize(fails, rows.length); process.exit(fails.length ? 1 : 0); break; }
-  case 'check': { const { rows, fails } = buildAll(loadTokens(tokenPath), distDir, false); summarize(fails, rows.length); console.log('report: ' + resolve(distDir, 'report.html')); process.exit(fails.length ? 1 : 0); break; }
+  case 'build': { process.exit(summarize(buildAll(loadTokens(tokenPath), distDir)) ? 0 : 1); break; }
+  case 'check': { const ok = summarize(buildAll(loadTokens(tokenPath), distDir, false)); console.log('report: ' + resolve(distDir, 'report.html')); process.exit(ok ? 0 : 1); break; }
   case 'fix': { const ch = fixTokens(tokenPath); ch.forEach((c) => console.log(c)); console.log(`${ch.length} token values adjusted`); break; }
   case 'export': {
     const name = flag('target');
